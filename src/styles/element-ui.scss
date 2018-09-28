@@ -1,0 +1,64 @@
+ //覆盖一些element-ui样式
+.el-tabs__item {
+  padding: 0 47.5px;
+  height: 28px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  line-height: 28px;
+  display: inline-block;
+  list-style: none;
+  font-size: 18px;
+  font-weight: 500;
+  color: #666;
+  position: relative;
+}
+
+.el-tabs__nav-wrap {
+  padding: 0 24px;
+}
+// .el-tabs__nav-wrap::after {
+//   content: "";
+//   position: absolute;
+//   left: 0;
+//   bottom: 0;
+//   width: 100%;
+//   padding: 0 24px;
+//   height: 2px;
+//   background-color: #e4e7ed;
+//   z-index: 1;
+// }
+.el-tabs__header {
+  margin: 0 0 30px;
+}
+.el-tabs--top .el-tabs__item.is-top:nth-child(2){
+    padding-left:26px;
+}
+.el-tabs--top .el-tabs__item.is-top:last-child{
+     padding-right:26px;
+}
+.el-step__title.is-success{
+    color:#ff9900;
+}
+.el-step__head.is-success{
+    color:#ff9900;
+    border-color:#ff9900;
+}
+.el-step__title.is-process{
+    color:#999;
+}
+.el-step__title{
+  font-size: 12px;
+}
+
+// input 样式
+.el-form-item__label {
+  color: #666;
+}
+.el-form--label-top .el-form-item__label {
+   padding: 10px 0 0;
+   line-height: 30px;
+ }
+
+.el-card__body{
+  padding: 40px 14px 18px;
+}
