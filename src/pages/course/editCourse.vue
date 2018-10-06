@@ -14,7 +14,7 @@
         </swiper>
 
         <div class="detail-form">
-            
+            1111
         </div>
     </div>
 </template>
