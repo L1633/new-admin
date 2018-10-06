@@ -13,6 +13,9 @@
             </swiper-slide>
         </swiper>
 
+        <div class="detail-form">
+            
+        </div>
     </div>
 </template>
 
@@ -51,7 +54,8 @@
             height: 1.6rem;
             background-color: #fff;
             .slider-item{
-                
+                width: 100%;
+                height: 100%;
             }
         }
     }
