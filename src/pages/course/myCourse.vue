@@ -1,19 +1,21 @@
 <template>
     <div class="course-card">
             <div v-for=" course in courseList" :key="course.id" class="card-box" v-cloak>
-                <el-card :body-style="{ padding: '0px'}" class="father">
-                    <img :src="`/api/getImageUrl/${course.firstImg}/big`" class="image">
-                    <span class="btn"></span>
-                    <div style="padding: 0.2rem;">
-                        <p>{{course.c_name}}</p>
-                        <div class="message">
-                            <span class="fl">老师：{{course.teacherName.join()}}</span>
-                            <span class="fr">学费：{{course.totalFee===course.discFee?course.discFee:course.discFee}}/人</span>
-                            <span class="fl">学员：{{course.signUpNum}} </span>
-                            <span class="fr">课时：{{course.class_hour}}节</span>
-                        </div>
-                    </div>
-                </el-card>
+                <router-link :to="`/layout/courseDetail/${course.id}`">
+                  <el-card :body-style="{ padding: '0px'}" class="father">
+                      <img :src="`/api/getImageUrl/${course.firstImg}/big`" class="image">
+                      <span class="btn"></span>
+                      <div style="padding: 0.2rem;">
+                          <p>{{course.c_name}}</p>
+                          <div class="message">
+                              <span class="fl">老师：{{course.teacherName.join()}}</span>
+                              <span class="fr">学费：{{course.totalFee===course.discFee?course.discFee:course.discFee}}/人</span>
+                              <span class="fl">学员：{{course.signUpNum}} </span>
+                              <span class="fr">课时：{{course.class_hour}}节</span>
+                          </div>
+                      </div>
+                  </el-card>
+                </router-link>
             </div>
 
             <div class="card-addbox">

@@ -73,6 +73,16 @@ const router = new Router({
           component: () => import('@/pages/course/myCourse.vue'),
         },
         {
+          path: 'courseDetail/:id',
+          props:true,
+          component: () => import('@/pages/course/courseDetail.vue'),
+        },
+        {
+          path: 'editCourse/:id',
+          props: true,
+          component: () => import('@/pages/course/editCourse.vue'),
+        },
+        {
           path: 'addcourse',
           component: () => import('@/pages/addCourse.vue'),
         },

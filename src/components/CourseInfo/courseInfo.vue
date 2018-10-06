@@ -3,7 +3,6 @@
         <!-- ,display:displayKind -->
         <el-carousel indicator-position="none"  @change="handleChange($event)" ref="carousel">
             <el-carousel-item v-for="course in courseData" :key="course.id">
-
                 <img :src="`/api/getImageUrl/${course.firstImg}/big`" alt="">
                 <div class="item-msg Extra-notice-color">
                     <p>{{course.ca_name}}</p>
@@ -114,18 +113,12 @@ export default {
   watch: {
     positionLeft() {
       this.left = this.positionLeft;
-      // console.log(`${this.left}px`,998)
-      // console.log(this.courseData,9527)
       return this.left;
     },
     positionTop() {
-      // console.log(1198888)
       this.top = this.positionTop;
       return this.top;
     },
-    // position(){
-    //     this.
-    // }
     display() {
       this.displayKind = this.display;
       // this.displayFin = this.displayKind == this.display2 ? this.display2:'block';
@@ -135,7 +128,6 @@ export default {
         this.displayFin = "none";
       }
 
-      // console.log(this.displayFin,this.display2,'ssss')
       return this.displayFin;
     },
     display2() {
@@ -173,6 +165,7 @@ export default {
   width: 3.3rem;
   height: 2rem;
   background-color: #fff;
+
   // position: absolute;
   // position: relative;
   border-radius: 4px;
@@ -192,6 +185,8 @@ export default {
       }
       .item-msg {
         width: 1.7rem;
+        height: 1.9rem;        
+        box-sizing: border-box;
         padding-top: 0.14rem;
         & > p {
           font-size: 20px;

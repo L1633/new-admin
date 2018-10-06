@@ -28,7 +28,7 @@
 
                 <el-form-item label="教学地址">
 
-                    <el-cascader :options="options1" @change="handleItemChange" ></el-cascader>
+                    <el-cascader :options="options1" @change="handleItemChange" class="form-cascader"></el-cascader>
 
                     <el-input v-model="formLabelAlign.addr" placeholder="请输入教学地址"></el-input>
 
@@ -325,5 +325,7 @@ export default {
 .el-input__inner{
      background-color:#F8F8F8;
  }
-
+.form-cascader{
+    margin-bottom: 0.1rem;
+}
 </style>

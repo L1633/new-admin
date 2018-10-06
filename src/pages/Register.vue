@@ -43,8 +43,6 @@
                         <el-input v-model="form.code" placeholder="滑动获取验证码"></el-input>
                     </el-form-item>
 
-
-
                     <el-row>
                         <el-col :span="15">
                             <el-form-item>
@@ -57,9 +55,6 @@
                         </el-col>
                     </el-row>
                     
-
-
-
 
                     <el-form-item>
                         <el-input v-model="form.password" placeholder="请输入密码"></el-input>

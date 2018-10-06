@@ -34,14 +34,14 @@
                         </swiper>
 
                         <!-- 下午 -->
-                        <swiper :options="swiperOption" ref="mySwiper"  v-if="courseList[day].afternoon" class="afternoon">
+                        <swiper :options="swiperOption" ref="mySwiper"  v-if="courseList[day].afternoon" class="afternoon"  @mouseover.native="con($event,courseList[day].afternoon,day)" @mouseout.native="demo"> 
                             <swiper-slide  v-for="time in courseList[day].afternoon">
                                 <i v-if="courseList[day].afternoon"  :class="courseList[day].afternoon?'afternoon':'' ">{{time.ca_name+'(' + time.curr_hour+' -'+ time.total_hour+')'}}</i>
                             </swiper-slide>
                         </swiper>
 
                         <!-- 晚上 -->
-                        <swiper :options="swiperOption" ref="mySwiper"  v-if="courseList[day].night" class="night">
+                        <swiper :options="swiperOption" ref="mySwiper"  v-if="courseList[day].night" class="night"  @mouseover.native="con($event,courseList[day].night,day)" @mouseout.native="demo">
                              <swiper-slide  v-for="time in courseList[day].night">
                                 <i  :class="courseList[day].night?'night':'' ">{{time.ca_name+'(' + time.curr_hour+' -'+ time.total_hour+')'}}</i>
                             </swiper-slide>
