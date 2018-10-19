@@ -7,13 +7,13 @@ function getSig(route) {
     echostr += Math.floor(Math.random() * 10);
   }
   var timestamp = Date.parse(new Date());
-  var sign = md5("vRCouDfRNin1tgr14lyU4djkKj2eKtCU" + echostr + timestamp + route + 'web');
+  var sign = md5("" + echostr + timestamp + route + 'web');
   var header = {
-    "api-access-key": "dSuJBDYUebrW0yyKhLN0MRO2m4iPaFde",
+    "api-access-key": "",
     "api-echostr": echostr,
     "api-signature": sign,
     "api-timestamp": timestamp,
-    "Accept": "application/vnd.Peripheralclassroom.v1+json",
+    "Accept": "",
   };
   return header;
 }
