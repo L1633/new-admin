@@ -24,18 +24,7 @@
             TagsView
         },
         created(){
-            
-            // // 请求接口示例
-            // this.$http.post('/getAgentInfo', {})
-            // .then(function (response) {
-            //     console.log(response);
-            // })
-            // .catch(function (error) {
-            //     console.log(error);
-            // });
-            // //返回用户信息示例
-            // console.log(this.$auth.user())
-            
+
         },
         data() {
             return {

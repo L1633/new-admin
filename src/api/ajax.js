@@ -19,7 +19,6 @@ function getSig(route) {
 }
 
 export default function ajax(url, data ={},type = 'GET') {
-
   var header = getSig(url.slice(1));
   if (type === 'GET') { 
       // 发送GET请求

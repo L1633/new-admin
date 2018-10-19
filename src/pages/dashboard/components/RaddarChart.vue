@@ -100,7 +100,7 @@
                 courseList:[],
                 swiperOption:{
                     // debugger: true,            
-                    autoplay: true,  
+                    autoplay: true,
                     direction:'vertical',
                     grabCursor:true,
                     loop:true    
@@ -124,9 +124,11 @@
         created(){
             const seqid = Date.parse(new Date());
             let c_id = this.$store.state.c_id;
-            const Month = `2018-09`;
+            // const Month = `2018-10`;
+            const Month = (new Date().getMonth()+1)<10 ? `${new Date().getFullYear()}-0${new Date().getMonth()+1}`:`${new Date().getFullYear()}-${new Date().getMonth()+1}`;
+            console.log(Month,'sdsdsdsds ')
             getAgentCourseTimeDayList({seqid,Month,c_id}).then(res=>{
-                console.log(res.data.list)
+                console.log(res.data.list,'课表轮播图')
                 this.courseList = res.data.list;
                 // console.log(this.courseList[20180903]['morning'],'22222')
             })

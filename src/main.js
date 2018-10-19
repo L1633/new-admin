@@ -21,7 +21,6 @@ import VueAxios from 'vue-axios';
 import md5 from 'js-md5';
 
 
-
 Vue.prototype.axios = axios
 
 Vue.use(VueAxios, axios);

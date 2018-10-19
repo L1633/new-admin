@@ -1,7 +1,7 @@
 <template>
     <div class="login-container">
         <!-- 表单 -->
-        <el-form class="login-form">
+        <el-form class="login-form" v-loading="loading" element-loading-text="拼命登录中">
             <!-- 标题 -->
             <div class="login-tittle">登录周边课堂</div>
             <!-- 登录方式 -->
@@ -51,8 +51,6 @@
 
         </el-form>
        
-       
-       
     </div>
 </template>
 
@@ -67,7 +65,8 @@ export default {
         phone_num: "15927381505",
         password: "111111"
       },
-      activeName: "first"
+      activeName: "first",
+      loading: false
     };
   },
   mounted() {},
@@ -76,8 +75,9 @@ export default {
       console.log(tab, event);
     },
     async login() {
-      var seqid = Date.parse(new Date());
-      var response = await Reqlogin({
+      let seqid = Date.parse(new Date());
+      this.loading = true;
+      let response = await Reqlogin({
         mobile: this.form.phone_num,
         password: this.form.password,
         login_type: 2,
@@ -89,15 +89,21 @@ export default {
         // 成功
         let token = response.headers.authorization ;
         let c_id = result.user.c_id;
-        console.log(c_id,'c_id')
+        let pid = result.user.pid;
+        let hashId = result.user.hashId;
+        console.log(result,'result')
         // 设置 token
         this.$store.commit('set_token', token);
         this.$store.commit('set_c_id', c_id);
+        this.$store.commit('set_pid', pid);
+        this.$store.commit('set_hashId', hashId);
+        console.log(this.$store.state.pid,'this.$store.state.pid')
         this.$router.push('/layout');
       } else {
         // 失败
          console.log(result.data.message);
       }
+      this.loading = false;
     }
   }
 };

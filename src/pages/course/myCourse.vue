@@ -9,7 +9,7 @@
                           <p>{{course.c_name}}</p>
                           <div class="message">
                               <span class="fl">老师：{{course.teacherName.join()}}</span>
-                              <span class="fr">学费：{{course.totalFee===course.discFee?course.discFee:course.discFee}}/人</span>
+                              <span class="fr">学费：{{course.totalFee === course.discFee ? course.discFee : course.discFee}}/人</span>
                               <span class="fl">学员：{{course.signUpNum}} </span>
                               <span class="fr">课时：{{course.class_hour}}节</span>
                           </div>
@@ -52,7 +52,7 @@ export default {
     getAgentCourseList({seqid,c_id,pSize:7}).then(res=>{
       this.courseList = res.data.list;
       this.total = res.data.totalPage;
-      console.log(typeof(this.total))
+      console.log(res)
     })
   },
   computed:{

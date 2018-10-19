@@ -1,7 +1,7 @@
 <template>
     <div class="course-detail">
         <div class="detail-title">
-            <span>我的课程</span>
+            <span @click="toMycourse()">我的课程</span>
             <span>课程详情</span>
         </div> 
         <div class="detail-main">
@@ -13,21 +13,19 @@
                     编辑
                     </el-button>
                 </router-link>
-                     
                
                 <p>课程纪要</p>
                 
-                <div class="detail-card" v-for="item in 3">
-                    <p>明天</p>
+                <div class="detail-card" v-for="item in courseTimeList">
+                    <p>{{`${item.ct_name}  ${item.calc_time}   ${item.stime}`}}</p>
                     <div class="card-content">
-                        <p>课程内容：理论知识</p>
-                        <p>课程要点：1、讲解起源及发展趋势
-                        2、增强学员对舞蹈知识的储备
+                        <p>课程内容：{{item.content}}</p>
+                        <p>课程要点：{{item.essentials}}
                         </p>
-                        <p>课程内容：理论知识</p>
+                        <p>课程任务：{{item.courseTask?item.courseTask.content :""}}</p>
                     </div>
-                    <div class="card-pic">
-                        <img src="" alt="" v-for="o in 5">
+                    <div class="card-pic" v-if="item.courseTask">
+                        <img :src="`/api/getImageUrl/${imgsrc}/big`" alt="课程图片" v-for="(imgsrc,index) in item.courseTask.imgUrl" :key=index>
                     </div>
                 </div>
                
@@ -37,59 +35,81 @@
                  <el-button plain class="fr">编辑</el-button>
                  <div class="right-content">
                     <div class="log">
-                        <img src="" alt="">
+                        <img :src="`/api/getImageUrl/${courseDetailMsg.firstImg}/big`" alt="">
                     </div>
-                    <p class="title">基础素描</p>
+                    <p class="title">{{courseDetailMsg.c_name}}</p>
                     <div class="msg">
                         <div>
-                            <p>23</p>
+                            <p>{{courseDetailMsg.evaluationNum || 0}}</p>
                             评论
                         </div>
                         <div>
-                            <p>8</p>
+                            <p>{{courseDetailMsg.class_hour}}</p>
                             课时
                         </div>
                         <div>
-                            <p>6</p>
+                            <p>{{courseDetailMsg.signUpNum}}</p>
                             学员
                         </div>
                         <div>
-                            <p>800</p>
+                            <p>{{courseDetailMsg.totalFee === courseDetailMsg.discFee? courseDetailMsg.totalFee : courseDetailMsg.discFee}}</p>
                             学费（元/人）
                         </div>
                     </div>
                     <div class="main-content">
-                        <p>课程模式：正常模式</p>
-                        <p>授课老师：刘敏华</p>
-                        <p>授课类型：兴趣拓展</p>
+                        <p>课程模式：{{teachingModel[courseDetailMsg.c_type]}}</p>
+                        <p>授课老师：{{courseDetailMsg.teacherName? courseDetailMsg.teacherName.join() : ''}}</p>
+                        <p>授课类型：{{courseDetailMsg.sort}}</p>
                         <p>上课时间：14:00~16:00</p>
                     </div>
                     <div class="course-desc">
                         <p>课程介绍</p>
                         <div class="notice-color">
-                            course-desccourse-desccourse-desccourse-desccourse-desccourse-desccourse-desccourse-desccourse-desccourse-desc
-                            course-desccourse-desccourse-desccourse-desccourse-desccourse-desccourse-desccourse-desccourse-desccourse-desc
+                            {{courseDetailMsg.introduction}}
                         </div>
                     </div>
                     <div class="course-img">
-                        <img src="" alt="" v-for="o in 4">
+                        <img :src="`/api/getImageUrl/${img}/big`" alt="" v-for=" (img,index) in courseDetailMsg.c_imgUrl" :key="index">
                     </div>
                  </div>
 
             </div>
         </div>
+        <!-- img是返回给服务器的数组的key  imgUrl是加密显示的图片-->
     </div>
 </template>
 
 <script>
+import { getAgentCourseTimeList, getAgentCourse } from "../../api";
 export default {
   name: "courseDetail",
   props: ["id"],
   data() {
-    return {};
+    return {
+      courseTimeList: [],
+      courseDetailMsg: {},
+      teachingModel: ["正常模式", "拼课模式", " 老师上门"],
+      c_name: ""
+    };
   },
   created() {
     console.log(this.id);
+    var seqid = Date.parse(new Date());
+    let c_id = this.$store.state.c_id;
+    getAgentCourseTimeList({ seqid, c_id, ca_id: this.id }).then(res => {
+      // console.log(res, "getAgentCourseTimeList");
+      this.courseTimeList = res.data.list;
+    });
+    getAgentCourse({ seqid, c_id, ca_id: this.id }).then(res => {
+      console.log(res.data.data, "getAgentCourse");
+      this.courseDetailMsg = res.data.data;
+      let c_name = this.courseDetailMsg.c_name;
+    });
+  },
+  methods: {
+    toMycourse() {
+      this.$router.push("/layout/course");
+    }
   }
 };
 </script>
@@ -98,6 +118,18 @@ export default {
 .course-detail {
   font-size: 16px;
   .detail-title {
+    margin-bottom: 0.1rem;
+    span:first-child {
+      color: #333;
+    }
+    span:last-child {
+      color: #333;
+      font-weight: bold;
+      margin-left: 0.29rem;
+      display: inline-block;
+      padding-bottom: 0.06rem;
+      border-bottom: 2px solid #ff9900;
+    }
   }
   .detail-main {
     display: flex;
@@ -207,10 +239,10 @@ export default {
           p {
             margin: 0 0 0.08rem;
             font-weight: bold;
-            color: #666;            
+            color: #666;
           }
-          div{
-              line-height: 22px;
+          div {
+            line-height: 22px;
           }
         }
         .course-img {

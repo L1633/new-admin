@@ -63,13 +63,6 @@ export default {
       classmates: []
     };
   },
-  //   computed: {
-  //     style () {
-  //       return {
-
-  //       }
-  //     }
-  //   },
   methods: {
     changDisplay(kind) {
       kind ? (this.display2 = true) : (this.display2 = false);
@@ -83,8 +76,6 @@ export default {
         this.classmates = result;
         console.log(result, "sdsds ");
       });
-
-      // return result;
     },
     handleChange(e = 0) {
       if (!this.courseData[e]) return;
@@ -100,14 +91,9 @@ export default {
       let c_id = this.$store.state.c_id;
       getBabyCourseUsers({ seqid, c_id, ca_id: this.courseData[e].ca_id }).then(
         res => {
-          let result = res.data.list;
-          this.classmates = result;
-          // console.log(result ,'sdsds')
+          this.classmates = res.data.list;
         }
       );
-      // getBabyCourseUsers({ca_id:17}).then(res=>{
-      //     console.log(res)
-      // })
     }
   },
   watch: {
@@ -127,7 +113,6 @@ export default {
       } else {
         this.displayFin = "none";
       }
-
       return this.displayFin;
     },
     display2() {
@@ -185,7 +170,7 @@ export default {
       }
       .item-msg {
         width: 1.7rem;
-        height: 1.9rem;        
+        height: 1.9rem;
         box-sizing: border-box;
         padding-top: 0.14rem;
         & > p {

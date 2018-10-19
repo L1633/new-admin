@@ -5,24 +5,21 @@
         <RaddarChart :dateToolsKey="2" :trainDateList="[12,17,30]" :trainDateFullList="['20180102','20120312']" ref="topDateTools2" @topDateEvent2="topDateFun2"></RaddarChart>
         
         <div class="charts">
-            <div class="number">
+            <div class="number" v-if="$store.state.hasCharts.line">
                 <p class="title">学员数曲线图</p>
                 <div class="chart-wrapper">
                     <bar-chart></bar-chart>
                 </div>
             </div>
 
-            <div class="distribute">
+            <div class="distribute" v-if="$store.state.hasCharts.pie">
                 <p class="title">学员分部图</p>
                 <div class="chart-wrapper">
                     <pie-chart></pie-chart>
                 </div>
             </div>
         </div>
-
-
-      
-      
+        
     </div>
 </template>
 

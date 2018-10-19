@@ -35,15 +35,20 @@
                 </el-menu-item>
             </router-link>
 
-            <el-menu-item index="5">
-                <i class="el-icon-setting"></i>
-                <span slot="title">我的关注</span>
-            </el-menu-item>
-
-            <el-menu-item index="6">
-                <i class="el-icon-setting"></i>
-                <span slot="title">我的订单</span>
-            </el-menu-item>
+            <router-link to='/layout/attention'>
+                <el-menu-item index="5">
+                    <i class="el-icon-setting"></i>
+                    <span slot="title">我的关注</span>
+                </el-menu-item>
+            </router-link>
+            
+            <!-- <router-link to='/layout/order'>
+                <el-menu-item index="6">
+                    <i class="el-icon-setting"></i>
+                    <span slot="title">我的订单</span>
+                </el-menu-item>
+            </router-link> -->
+            
         </el-menu>
     
     </div>
@@ -59,7 +64,7 @@
             };
         },
         methods: {
-             ...mapMutations(['toggleSideBar']),
+            ...mapMutations(['toggleSideBar']),
             handleOpen(key, keyPath) {
                 console.log(key, keyPath);
             },

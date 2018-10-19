@@ -10,7 +10,7 @@ body {
 }
 
 label {
-  font-weight: 700;
+  font-weight: bold;
 }
 
 html {
@@ -226,4 +226,20 @@ code {
 }
 .themeColor{
   color: #FF9900;
+}
+.el-table{
+  border-radius: 4px;
+}
+.el-table thead {
+  color: #333 ;
+  font-weight: bold;
+}
+.cell{
+  text-align: center
+}
+.has-gutter .is-leaf{
+  border-right:1px solid #F5F7F8;
+}
+.el-button--primary.is-plain{
+  background-color: #fff;
 }
